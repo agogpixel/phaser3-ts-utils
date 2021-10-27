@@ -1,0 +1,17 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "target": "es5",
+    "types": ["node", "jest", "phaser", "@agogpixel/phaser3-ts-utils"],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es5", "dom", "scripthost"]
+  },
+  "exclude": ["jest.config.js"]
+}
