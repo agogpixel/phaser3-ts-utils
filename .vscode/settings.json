@@ -19,6 +19,9 @@
 	"[typescript]": {
 		"editor.formatOnSave": true
 	},
+	"[yml]": {
+		"editor.formatOnSave": true
+	},
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"typescript.tsserver.experimental.enableProjectDiagnostics": false
 }

@@ -1,0 +1,16 @@
+name: Lint & Unit Test
+description: Lints source code, performs unit tests, & archives coverage report.
+runs:
+  using: composite
+  steps:
+    - name: Lint
+      run: npm run lint
+      shell: bash
+    - name: Unit Test
+      run: npm test
+      shell: bash
+    - name: Archive Coverage Report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage
+        path: coverage
