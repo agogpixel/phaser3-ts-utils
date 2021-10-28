@@ -28,7 +28,7 @@ jobs:
       - name: Build & Smoke Test
         uses: ./.github/actions/build-and-smoke-test
   Automated-Pre-Release:
-    if: github.ref == refs/heads/main && github.event_name == push
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     name: Automated Pre-Release
     runs-on: ubuntu-latest
     needs: [Lint-And-Unit-Test, Build-And-Smoke-Test]
