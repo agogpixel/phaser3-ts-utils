@@ -40,7 +40,7 @@ jobs:
       - name: Create Pre-Release
         uses: marvinpinto/action-automatic-releases@v1
         with:
-          repo_token: "${{ secrets.PAT_TOKEN }}"
+          repo_token: '${{ secrets.PAT_TOKEN }}'
           automatic_release_tag: next
           prerelease: true
           title: Latest Development
