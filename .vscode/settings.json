@@ -16,10 +16,16 @@
 	"[jsonc]": {
 		"editor.formatOnSave": true
 	},
+	"[markdown]": {
+		"editor.formatOnSave": true
+	},
 	"[typescript]": {
 		"editor.formatOnSave": true
 	},
-	"[yml]": {
+	"[xml]": {
+		"editor.formatOnSave": true
+	},
+	"[yaml]": {
 		"editor.formatOnSave": true
 	},
 	"typescript.tsdk": "node_modules/typescript/lib",
