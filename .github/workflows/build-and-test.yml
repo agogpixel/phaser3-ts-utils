@@ -43,7 +43,7 @@ jobs:
           name: dist
           path: dist
       - name: Prepare Development Release
-        run: npm run prepare:release -- dev
+        run: npm run prepare:release -- dev && echo "RELEASE_TARBALL=$(cat release-tarball-name.txt)" >> $GITHUB_ENV
       - name: Create Development Release
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
@@ -51,4 +51,12 @@ jobs:
           automatic_release_tag: latest
           prerelease: true
           title: Latest Development
-          files: phaser3-ts-utils-*.tgz
+          files: ${{ env.RELEASE_TARBALL }}
+      - name: Upload Release Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-artifacts
+          path: |
+            release-log.txt
+            release-tarball-name.txt
+            ${{ env.RELEASE_TARBALL }}

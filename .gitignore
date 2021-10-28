@@ -41,6 +41,9 @@ yarn-error.log
 testem.log
 /typings
 .eslintcache
+release-log.txt
+release-tarball-name.txt
+phaser3-ts-utils*.tgz
 
 # System Files
 .DS_Store
