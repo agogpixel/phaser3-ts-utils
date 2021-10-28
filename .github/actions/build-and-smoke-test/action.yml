@@ -1,0 +1,16 @@
+name: Build & Smoke Test
+description: Builds package, performs smoke tests, and archives build artifacts.
+runs:
+  using: composite
+  steps:
+    - name: Build
+      run: npm run build
+      shell: bash
+    - name: Smoke Test
+      run: npm run test:dist
+      shell: bash
+    - name: Archive Build
+      uses: actions/upload-artifact@v2
+      with:
+        name: dist
+        path: dist

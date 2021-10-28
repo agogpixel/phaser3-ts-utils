@@ -1,0 +1,47 @@
+name: Build & Test
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+  workflow_dispatch:
+jobs:
+  Lint-And-Unit-Test:
+    name: Lint & Unit Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Setup Dependencies
+        uses: ./.github/actions/setup-dependencies
+      - name: Lint & Unit Test
+        uses: ./.github/actions/lint-and-unit-test
+  Build-And-Smoke-Test:
+    name: Build & Smoke Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Setup Dependencies
+        uses: ./.github/actions/setup-dependencies
+      - name: Build & Smoke Test
+        uses: ./.github/actions/build-and-smoke-test
+  Automated-Pre-Release:
+    if: github.ref == refs/heads/main && github.event_name == push
+    name: Automated Pre-Release
+    runs-on: ubuntu-latest
+    needs: [Lint-And-Unit-Test, Build-And-Smoke-Test]
+    steps:
+      - name: Fetch Build Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+      - name: Create Pre-Release
+        uses: marvinpinto/action-automatic-releases@v1
+        with:
+          repo_token: "${{ secrets.PAT_TOKEN }}"
+          automatic_release_tag: next
+          prerelease: true
+          title: Latest Development
+          files: dist

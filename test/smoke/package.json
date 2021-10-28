@@ -1,7 +1,7 @@
 {
-  "name": "@agogpixel/phaser3-ts-utils-integration-test",
+  "name": "@agogpixel/phaser3-ts-utils-smoke-test",
   "version": "0.0.0",
-  "description": "Phaser 3 TypeScript utilities integration test.",
+  "description": "Phaser 3 TypeScript utilities smoke test.",
   "scripts": {
     "prepare": "npm link ../../dist",
     "test": "jest"
