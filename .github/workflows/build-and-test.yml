@@ -82,7 +82,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           RELEASE_TARBALL: ${{ env.RELEASE_TARBALL }}
       - name: Publish Development Release Package (GitHub)
-        run: npm config set registry https://npm.pkg.github.com && npm config set //npm.pkg.github.com/:_authToken "::add-mask::$NODE_AUTH_TOKEN" && npm run publish:release -- "$RELEASE_TARBALL" next
+        run: npm config set @agogpixel:registry https://npm.pkg.github.com && npm config set //npm.pkg.github.com/:_authToken "$NODE_AUTH_TOKEN" && npm run publish:release -- "$RELEASE_TARBALL" next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GHP_TOKEN }}
           RELEASE_TARBALL: ${{ env.RELEASE_TARBALL }}
