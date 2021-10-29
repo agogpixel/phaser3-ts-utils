@@ -1,5 +1,10 @@
 name: Build & Smoke Test
 description: Builds package, performs smoke tests, and archives build artifacts.
+inputs:
+  build-artifacts-name:
+    description: Name under which to upload build artifacts.
+    required: false
+    default: dist
 runs:
   using: composite
   steps:
@@ -9,8 +14,8 @@ runs:
     - name: Smoke Test
       run: npm run test:dist
       shell: bash
-    - name: Archive Build
+    - name: Archive Build Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: dist
+        name: ${{ inputs.build-artifacts-name }}
         path: dist

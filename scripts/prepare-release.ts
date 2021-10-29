@@ -13,7 +13,7 @@ const tarballPrefix = 'phaser3-ts-utils';
 const tarballPostfix = `${packageJson.version}` + (isDevRelease ? `-dev.${timestamp}` : '');
 
 const srcTarball = `agogpixel-${tarballPrefix}-${tarballPostfix}.tgz`;
-const dstTarball = isDevRelease ? `${tarballPrefix}-dev.tgz` : `${tarballPrefix}-${tarballPostfix}.tgz`;
+const dstTarball = isDevRelease ? `${tarballPrefix}-next.tgz` : `${tarballPrefix}-v${tarballPostfix}.tgz`;
 
 function pack() {
   const mvCmd = `mv ${srcTarball} ../${dstTarball}`;

@@ -1,0 +1,43 @@
+name: Publish Package To Registry
+description: Publishes release tarball to remote package registry.
+inputs:
+  release-tarball:
+    description: Release tarball filename.
+    required: true
+    default: ''
+  node-version:
+    description: NodeJS version.
+    required: false
+    default: '14'
+  registry-name:
+    description: Registry name.
+    required: false
+    default: NPM
+  registry-url:
+    description: Registry url.
+    required: false
+    default: https://registry.npmjs.org
+  scope:
+    description: NPM registry scope.
+    required: false
+    default: '@agogpixel'
+  tag:
+    description: Release tag (ie. 'latest', 'next', etc).
+    required: false
+    default: latest
+runs:
+  using: composite
+  steps:
+    - name: Setup Dependencies
+      uses: ./.github/actions/setup-dependencies
+      with:
+        node-version: '${{ inputs.node-version }}'
+        registry-url: '${{ inputs.registry-url }}'
+        scope: '${{ inputs.scope }}'
+    - name: Publish Package (${{ inputs.registry-name }})
+      run: npm run publish:package -- "$RELEASE_TARBALL" "$REGISTRY_NAME" "$TAG"
+      shell: bash
+      env:
+        RELEASE_TARBALL: ${{ inputs.release-tarball }}
+        REGISTRY_NAME: ${{ inputs.registry-name }}
+        TAG: ${{ inputs.tag }}

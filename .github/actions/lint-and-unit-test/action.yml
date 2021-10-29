@@ -1,5 +1,10 @@
 name: Lint & Unit Test
 description: Lints source code, performs unit tests, & archives coverage report.
+inputs:
+  coverare-report-name:
+    description: Name under which to upload coverage report.
+    required: false
+    default: coverage
 runs:
   using: composite
   steps:

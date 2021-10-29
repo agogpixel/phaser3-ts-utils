@@ -1,13 +1,27 @@
 name: Setup Dependencies
 description: Sets up all project dependecies as required by workflows.
+inputs:
+  node-version:
+    description: NodeJS version.
+    required: false
+    default: '14'
+  registry-url:
+    description: NPM registry url.
+    required: false
+    default: https://registry.npmjs.org
+  scope:
+    description: NPM registry scope.
+    required: false
+    default: '@agogpixel'
 runs:
   using: composite
   steps:
     - name: Setup NodeJS
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
-        registry-url: 'https://registry.npmjs.org'
+        node-version: '${{ inputs.node-version }}'
+        registry-url: '${{ inputs.registry-url }}'
+        scope: '${{ inputs.scope }}'
     - name: Install NPM Packages
       run: npm install
       shell: bash

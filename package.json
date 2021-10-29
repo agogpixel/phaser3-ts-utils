@@ -16,7 +16,7 @@
     "prebuild": "npm run clean",
     "prepare": "husky install",
     "prepare:release": "ts-node scripts/prepare-release",
-    "publish:release": "ts-node scripts/publish-release",
+    "publish:package": "ts-node scripts/publish-package",
     "start": "jest --watch",
     "test": "jest --coverage",
     "test:dist": "cd test/smoke && npm install && npm test"

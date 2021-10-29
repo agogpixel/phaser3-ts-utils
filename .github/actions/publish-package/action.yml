@@ -1,0 +1,45 @@
+name: Publish Package
+description: Publishes tarball in release artifacts to all remote package registries.
+inputs:
+  release-artifacts-name:
+    description: Name of previously uploaded release artifacts.
+    required: false
+    default: release-artifacts
+  tag:
+    description: Release tag (ie. 'latest', 'next', etc).
+    required: false
+    default: latest
+runs:
+  using: composite
+  steps:
+    - name: Fetch Release Artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: ${{ inputs.release-artifacts-name }}
+    - name: Read Release Artifacts
+      run: echo "RELEASE_TARBALL=$(cat release-tarball-name.txt)" >> $GITHUB_ENV
+      shell: bash
+    - name: Publish Package (NPM)
+      uses: ./.github/actions/publish-package-to-registry
+      with:
+        release-tarball: ${{ env.RELEASE_TARBALL }}
+        tag: ${{ inputs.tag }}
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - name: Publish Package (GitHub)
+      uses: ./.github/actions/publish-package-to-registry
+      with:
+        release-tarball: ${{ env.RELEASE_TARBALL }}
+        tag: ${{ inputs.tag }}
+        registry-name: GitHub
+        registry-url: https://npm.pkg.github.com
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GHP_TOKEN }}
+    - name: Archive Release Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ inputs.release-artifacts-name }}
+        path: |
+          release-log.txt
+          release-tarball-name.txt
+          ${{ env.RELEASE_TARBALL }}
