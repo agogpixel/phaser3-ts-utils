@@ -25,7 +25,7 @@ exec(`npm publish ${tarball} --tag ${tag} --access public`, (err, stdout, stderr
 
   writeFile(
     'release-log.txt',
-    `Publish Release Package: ${registry}\n\nstdout:\n\n${stdout}\n\nstderr:\n\n${stderr}`,
+    `Publish Release Package: ${registry}\n\nstdout:\n\n${stdout}\n\nstderr:\n\n${stderr}\n\n`,
     { flag: 'a', encoding: 'utf-8' },
     (err) => {
       if (err) {
