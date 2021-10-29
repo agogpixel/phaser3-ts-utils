@@ -27,9 +27,9 @@ jobs:
         uses: ./.github/actions/setup-dependencies
       - name: Build & Smoke Test
         uses: ./.github/actions/build-and-smoke-test
-  Automated-Pre-Release:
+  Pre-Release:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    name: Automated Pre-Release
+    name: Pre-Release
     runs-on: ubuntu-latest
     needs: [Lint-And-Unit-Test, Build-And-Smoke-Test]
     steps:
@@ -43,16 +43,50 @@ jobs:
           name: dist
           path: dist
       - name: Prepare Development Release
-        run: npm run prepare:release -- dev && echo "RELEASE_TARBALL=$(cat release-tarball-name.txt)" >> $GITHUB_ENV
+        run: npm run prepare:release dev && echo "RELEASE_TARBALL=$(cat release-tarball-name.txt)" >> $GITHUB_ENV
       - name: Create Development Release
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
-          repo_token: '${{ secrets.PAT_TOKEN }}'
+          repo_token: '${{ secrets.GHP_TOKEN }}'
           automatic_release_tag: latest
           prerelease: true
           title: Latest Development
           files: ${{ env.RELEASE_TARBALL }}
       - name: Upload Release Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-artifacts
+          path: |
+            release-log.txt
+            release-tarball-name.txt
+            ${{ env.RELEASE_TARBALL }}
+  Publish-Pre-Release-Package:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    name: Publish Pre-Release Package
+    runs-on: ubuntu-latest
+    needs: [Pre-Release]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Setup Dependencies
+        uses: ./.github/actions/setup-dependencies
+      - name: Fetch Release Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: release-artifacts
+      - name: Read Release Artifacts
+        run: echo "RELEASE_TARBALL=$(cat release-tarball-name.txt)" >> $GITHUB_ENV
+      - name: Publish Development Release Package (NPM)
+        run: npm run publish:release "$RELEASE_TARBALL" next
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          RELEASE_TARBALL: ${{ env.RELEASE_TARBALL }}
+      - name: Publish Development Release Package (GitHub)
+        run: npm config set registry https://npm.pkg.github.com && npm run publish:release "$RELEASE_TARBALL" next
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GHP_TOKEN }}
+          RELEASE_TARBALL: ${{ env.RELEASE_TARBALL }}
+      - name: Archive Release Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: release-artifacts
