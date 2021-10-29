@@ -14,12 +14,9 @@
 
     ```json
     {
-      ...
-      "compilerOptions": {
-        ...
-        "types": [..., "@agogpixel/phaser3-ts-utils"],
-        ...
-      }
+        "compilerOptions": {
+            "types": ["@agogpixel/phaser3-ts-utils"]
+        }
     }
     ```
 
