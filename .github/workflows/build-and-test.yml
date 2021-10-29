@@ -77,12 +77,12 @@ jobs:
       - name: Read Release Artifacts
         run: echo "RELEASE_TARBALL=$(cat release-tarball-name.txt)" >> $GITHUB_ENV
       - name: Publish Development Release Package (NPM)
-        run: npm run publish:release -- "$RELEASE_TARBALL" next
+        run: npm run publish:release -- "$RELEASE_TARBALL" NPM next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           RELEASE_TARBALL: ${{ env.RELEASE_TARBALL }}
       - name: Publish Development Release Package (GitHub)
-        run: npm config set @agogpixel:registry https://npm.pkg.github.com && npm config set //npm.pkg.github.com/:_authToken "$NODE_AUTH_TOKEN" && npm run publish:release -- "$RELEASE_TARBALL" next
+        run: npm config set @agogpixel:registry https://npm.pkg.github.com && npm config set //npm.pkg.github.com/:_authToken "$NODE_AUTH_TOKEN" && npm run publish:release -- "$RELEASE_TARBALL" GitHub next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GHP_TOKEN }}
           RELEASE_TARBALL: ${{ env.RELEASE_TARBALL }}
