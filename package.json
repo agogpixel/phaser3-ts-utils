@@ -5,21 +5,23 @@
   "main": "./phaser-ts-utils.js",
   "types": "./phaser-ts-utils.d.ts",
   "scripts": {
-    "build": "npm run build:bundle && npm run build:js && npm run build:docs",
-    "build:bundle": "webpack --progress --color",
-    "build:docs": "typedoc --out dist/docs --entryPointStrategy expand src/phaser-ts-utils.d.ts",
-    "build:js": "tsc --project tsconfig.build.json",
-    "clean": "shx rm -rf dist",
-    "lint": "eslint jest.config.js webpack.config.js src test && prettier --check .",
-    "lint:fix": "eslint --fix jest.config.js webpack.config.js src test && prettier --write .",
-    "postbuild": "ts-node scripts/post-build.ts",
-    "prebuild": "npm run clean",
-    "prepare": "husky install",
-    "prepare:release": "ts-node scripts/prepare-release",
-    "publish:package": "ts-node scripts/publish-package",
+    "postinstall": "husky install",
     "start": "jest --watch",
     "test": "jest --coverage",
-    "test:dist": "cd test/smoke && npm install && npm test"
+    "prebuild": "shx rm -rf dist",
+    "build": "npm run build-bundle && npm run build-js && npm run build-docs",
+    "postbuild": "npm run copy-package-json && shx cp LICENSE README.md dist",
+    "smoke-test": "cd test/smoke && npm install && npm test",
+    "build-bundle": "webpack --progress --color && shx cp src/phaser-ts-utils.d.ts dist",
+    "build-js": "tsc --project tsconfig.build.json",
+    "build-docs": "typedoc --out dist/docs --entryPointStrategy expand src/phaser-ts-utils.d.ts && shx cp LICENSE dist/docs",
+    "lint": "ts-node scripts/lint.ts",
+    "lint:fix": "npm run lint -- --fix",
+    "copy-package-json": "ts-node scripts/copy-package-json.ts",
+    "create-package-tarball": "ts-node scripts/create-package-tarball.ts",
+    "publish-package-tarball": "ts-node scripts/publish-package-tarball/cli.ts",
+    "compare-package-version": "ts-node scripts/compare-package-version.ts",
+    "clean": "shx rm -f .eslintcache .smarttagcache npm-debug.log package-log.txt package-tarball-name.txt phaser3-ts-utils-*.tgz && shx rm -rf coverage dist"
   },
   "repository": {
     "type": "git",
@@ -30,13 +32,17 @@
   "bugs": {
     "url": "https://github.com/agogpixel/phaser3-ts-utils/issues"
   },
-  "homepage": "https://github.com/agogpixel/phaser3-ts-utils#readme",
+  "homepage": "https://agogpixel.github.io/phaser3-ts-utils",
   "peerDependencies": {
-    "phaser": ">=3.8.0"
+    "phaser": ">=3.8.0",
+    "typescript": ">=2.1.0"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
+    "@types/minimist": "^1.2.2",
     "@types/node": "^14.17.27",
+    "@types/semver": "^7.3.9",
+    "@types/shelljs": "^0.8.9",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
     "eslint": "^8.0.1",
@@ -46,8 +52,11 @@
     "jest": "^27.3.1",
     "jest-canvas-mock": "^2.3.1",
     "lint-staged": "^11.2.3",
+    "minimist": "^1.2.5",
     "phaser": "^3.55.2",
     "prettier": "^2.4.1",
+    "semver": "^7.3.5",
+    "shelljs": "^0.8.4",
     "shx": "^0.3.3",
     "source-map-loader": "^3.0.0",
     "ts-jest": "^27.0.7",

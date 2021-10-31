@@ -41,8 +41,9 @@ yarn-error.log
 testem.log
 /typings
 .eslintcache
-release-log.txt
-release-tarball-name.txt
+.smarttagcache
+package-log.txt
+package-tarball-name.txt
 phaser3-ts-utils*.tgz
 
 # System Files

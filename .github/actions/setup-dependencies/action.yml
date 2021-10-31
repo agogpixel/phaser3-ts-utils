@@ -1,5 +1,5 @@
 name: Setup Dependencies
-description: Sets up all project dependecies as required by workflows.
+description: Sets up all project dependecies as required by workflows & actions.
 inputs:
   node-version:
     description: NodeJS version.

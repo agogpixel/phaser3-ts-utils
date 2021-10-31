@@ -1,0 +1,39 @@
+name: Prepare Package
+description: Creates & uploads package artifacts.
+inputs:
+  build-artifacts-name:
+    description: Name of previously uploaded build artifacts.
+    required: false
+    default: dist
+  package-artifacts-name:
+    description: Name of package artifacts to be uploaded.
+    required: false
+    default: package-artifacts
+  release:
+    description: Flag indicating package will be versioned & tagged for non-development release channels.
+    required: false
+    default: 'false'
+outputs:
+  package-tarball:
+    description: Package tarball.
+    value: ${{ steps.prepare-package.outputs.package-tarball }}
+runs:
+  using: composite
+  steps:
+    - name: Fetch Build Artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: ${{ inputs.build-artifacts-name }}
+        path: dist
+    - name: Prepare Package
+      id: prepare-package
+      run: npm run create-package-tarball -- "$([ "$INPUT_RELEASE" == true ] && echo --release)" && echo "::set-output name=package-tarball::$(cat package-tarball-name.txt)"
+      shell: bash
+    - name: Upload Package Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ inputs.package-artifacts-name }}
+        path: |
+          package-log.txt
+          package-tarball-name.txt
+          ${{ steps.prepare-package.outputs.package-tarball }}

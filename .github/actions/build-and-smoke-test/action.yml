@@ -12,7 +12,7 @@ runs:
       run: npm run build
       shell: bash
     - name: Smoke Test
-      run: npm run test:dist
+      run: npm run smoke-test
       shell: bash
     - name: Archive Build Artifacts
       uses: actions/upload-artifact@v2

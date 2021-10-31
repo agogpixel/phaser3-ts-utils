@@ -1,10 +1,6 @@
 name: Publish Package To Registry
-description: Publishes release tarball to remote package registry.
+description: Publishes package tarball to remote package registry.
 inputs:
-  release-tarball:
-    description: Release tarball filename.
-    required: true
-    default: ''
   node-version:
     description: NodeJS version.
     required: false
@@ -21,10 +17,6 @@ inputs:
     description: NPM registry scope.
     required: false
     default: '@agogpixel'
-  tag:
-    description: Release tag (ie. 'latest', 'next', etc).
-    required: false
-    default: latest
 runs:
   using: composite
   steps:
@@ -35,9 +27,5 @@ runs:
         registry-url: '${{ inputs.registry-url }}'
         scope: '${{ inputs.scope }}'
     - name: Publish Package (${{ inputs.registry-name }})
-      run: npm run publish:package -- "$RELEASE_TARBALL" "$REGISTRY_NAME" "$TAG"
+      run: npm run publish-package-tarball -- "${{ inputs.registry-name }}"
       shell: bash
-      env:
-        RELEASE_TARBALL: ${{ inputs.release-tarball }}
-        REGISTRY_NAME: ${{ inputs.registry-name }}
-        TAG: ${{ inputs.tag }}

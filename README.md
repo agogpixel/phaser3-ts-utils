@@ -47,12 +47,18 @@ Utilizing class mixins, we can continue to use the Game Object components provid
 ```typescript
 const { Alpha, BlendMode, Texture, Transform, Visible } = PhaserTSUtils.Mixins.GameObjects.Components;
 
+// Make our own base game object type so we don't
+// accidentally pollute Phaser.GameObjects.GameObject prototype.
 class MyBaseGameObject extends Phaser.GameObjects.GameObject {}
 
 class MyGameObject extends Alpha(BlendMode(Texture(Transform(Visible(MyBaseGameObject))))) {
     // Custom Game Object implementation
     // with mixed in component properties
     // available in TypeScript...
+    doFoo() {
+        this.setAlpha(0.75);
+        // ...
+    }
 }
 ```
 
@@ -67,6 +73,10 @@ Phaser provides a [plugin system](https://rexrainbow.github.io/phaser3-rex-notes
 Utilizing a class mixin factory, we can create a mixin that coerces a given Scene class such that a plugin's injected API is available on the resulting Scene type:
 
 ```typescript
+////////////////////
+// Plugins
+////////////////////
+
 class GlobalPlugin extends Phaser.Plugins.BasePlugin {
     constructor(pluginManager: Phaser.Plugins.PluginManager) {
         super(pluginManager);
@@ -159,6 +169,10 @@ class ScenePlugin extends Phaser.Plugins.ScenePlugin {
     }
 }
 
+////////////////////
+// Mixins
+////////////////////
+
 const createMixin = PhaserTSUtils.Mixins.Scenes.createPluginApiMixin;
 
 const GlobalPluginMixin = createMixin<
@@ -189,8 +203,16 @@ const ScenePluginMixin = createMixin<
     { sceneA: (/* Args... */) => Phaser.Loader.LoaderPlugin; sceneB: (/* Args... */) => Phaser.Loader.LoaderPlugin }
 >();
 
+////////////////////
+// Scenes
+////////////////////
+
+// Make our own base scene type so we don't
+// accidentally pollute Phaser.Scene prototype.
 class MyBaseScene extends Phaser.Scene {}
 
+// Apply our mixins with with corresponding plugin
+// scene mappings (see below).
 class MyScene extends GlobalPluginMixin('myGlobalPlugin', ScenePluginMixin('myScenePlugin', MyBaseScene)) {
     preload() {
         // Custom loader file type callbacks...
@@ -231,6 +253,8 @@ class MyScene extends GlobalPluginMixin('myGlobalPlugin', ScenePluginMixin('mySc
 new Phaser.Game({
     // ...
     plugins: {
+        // Register our plugins with scene mappings
+        // (used with mixins in scene definition, see above).
         global: [{ key: 'globalPlugin', plugin: GlobalPlugin, mapping: 'myGlobalPlugin', start: true }],
         scene: [{ key: 'scenePlugin', plugin: ScenePlugin, mapping: 'myScenePlugin', start: true }]
     },
@@ -238,6 +262,67 @@ new Phaser.Game({
     // ...
 });
 ```
+
+## Development
+
+Live development with `jest` watch mode:
+
+```shell
+npm start
+```
+
+Lint files:
+
+```shell
+npm run lint      # Report issues.
+npm run lint:fix  # Fix issues.
+```
+
+Unit test & create coverage report in `coverage`:
+
+```shell
+npm test
+```
+
+Build consumable `.js`, `.js.map`, & `.d.ts` files to `dist`; prepare for further packaging:
+
+```shell
+npm run build
+```
+
+Smoke test build:
+
+```shell
+npm run smoke-test
+```
+
+Create package tarball from `dist`:
+
+```shell
+npm run create-package-tarball               # Development stream.
+npm run create-package-tarball -- --release  # Release stream.
+```
+
+Publish package tarball to registry (some assembly required):
+
+```shell
+npm run publish-package-tarball -- NPM
+npm run publish-package-tarball -- GitHub
+```
+
+## Package Distribution
+
+Tag for stable release with highest version: `latest`
+
+Development release tag (tracks `main` branch): `next`
+
+Additional distribution tags include:
+
+|                                       Distribution                                       |       Release       |  Pre-Release  |
+| :--------------------------------------------------------------------------------------: | :-----------------: | :-----------: |
+|       Major versions with highest minor, patch (and possibly pre-release) version.       |     `vX~latest`     |   `vX~next`   |
+|       Major, minor versions with highest patch (and possibly pre-release) version.       |    `vX.Y~latest`    |  `vX.Y~next`  |
+| Major, minor, patch versions - catch all for releases that don't match any of the above. | ~~`vX.Y.Z~latest`~~ | `vX.Y.Z~next` |
 
 ## License
 

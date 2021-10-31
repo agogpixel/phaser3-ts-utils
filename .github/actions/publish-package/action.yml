@@ -1,5 +1,5 @@
 name: Publish Package
-description: Publishes tarball in release artifacts to all remote package registries.
+description: Publishes package tarball to all remote package registries.
 inputs:
   npm-auth-token:
     description: NPM Auth Token.
@@ -9,45 +9,36 @@ inputs:
     description: GitHub Auth Token.
     required: true
     default: ''
-  release-artifacts-name:
-    description: Name of previously uploaded release artifacts.
+  package-artifacts-name:
+    description: Name of previously uploaded package artifacts.
     required: false
-    default: release-artifacts
-  tag:
-    description: Release tag (ie. 'latest', 'next', etc).
-    required: false
-    default: latest
+    default: package-artifacts
 runs:
   using: composite
   steps:
-    - name: Fetch Release Artifacts
+    - name: Fetch Package Artifacts
       uses: actions/download-artifact@v2
       with:
-        name: ${{ inputs.release-artifacts-name }}
-    - name: Read Release Artifacts
-      run: echo "RELEASE_TARBALL=$(cat release-tarball-name.txt)" >> $GITHUB_ENV
+        name: ${{ inputs.package-artifacts-name }}
+    - name: Read Package Artifacts
+      run: echo "PACKAGE_TARBALL=$(cat package-tarball-name.txt)" >> $GITHUB_ENV
       shell: bash
     - name: Publish Package (NPM)
-      uses: ./.github/actions/publish-package-to-registry
-      with:
-        release-tarball: ${{ env.RELEASE_TARBALL }}
-        tag: ${{ inputs.tag }}
+      uses: ./.github/actions/publish-package/to-registry
       env:
         NODE_AUTH_TOKEN: ${{ inputs.npm-auth-token }}
     - name: Publish Package (GitHub)
-      uses: ./.github/actions/publish-package-to-registry
+      uses: ./.github/actions/publish-package/to-registry
       with:
-        release-tarball: ${{ env.RELEASE_TARBALL }}
-        tag: ${{ inputs.tag }}
         registry-name: GitHub
         registry-url: https://npm.pkg.github.com
       env:
         NODE_AUTH_TOKEN: ${{ inputs.github-auth-token }}
-    - name: Archive Release Artifacts
+    - name: Archive Package Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ inputs.release-artifacts-name }}
+        name: ${{ inputs.package-artifacts-name }}
         path: |
-          release-log.txt
-          release-tarball-name.txt
-          ${{ env.RELEASE_TARBALL }}
+          package-log.txt
+          package-tarball-name.txt
+          ${{ env.PACKAGE_TARBALL }}
