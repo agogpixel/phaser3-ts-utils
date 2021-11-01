@@ -27,7 +27,7 @@ runs:
         path: dist
     - name: Prepare Package
       id: prepare-package
-      run: echo "release $INPUT_RELEASE" && npm run create-package-tarball -- "$([ "$INPUT_RELEASE" == 'true' ] && echo --release)" && echo "::set-output name=package-tarball::$(cat package-tarball-name.txt)"
+      run: npm run create-package-tarball -- "$([ "$INPUT_RELEASE" == 'true' ] && echo --release)" && echo "::set-output name=package-tarball::$(cat package-tarball-name.txt)"
       shell: bash
       env:
         INPUT_RELEASE: '${{ inputs.release }}'

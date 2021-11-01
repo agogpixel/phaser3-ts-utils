@@ -96,7 +96,7 @@ function fetchPublishedVersions(isPreRelease: boolean): string[] {
     return (
       (isPreRelease &&
         preReleaseExists &&
-        !preReleaseParts.some((part) => typeof part === 'string' && part === 'dev')) ||
+        !preReleaseParts.some((part) => typeof part === 'string' && !!part.match(/(^dev|.*-dev)$/))) ||
       (!isPreRelease && !preReleaseExists)
     );
   });

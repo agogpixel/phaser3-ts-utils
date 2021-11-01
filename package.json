@@ -1,6 +1,6 @@
 {
   "name": "@agogpixel/phaser3-ts-utils",
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0-alpha.4",
   "description": "Phaser 3 TypeScript utilities.",
   "main": "./phaser-ts-utils.js",
   "types": "./phaser-ts-utils.d.ts",
@@ -8,20 +8,20 @@
     "postinstall": "husky install",
     "start": "jest --watch",
     "test": "jest --coverage",
-    "prebuild": "shx rm -rf dist",
+    "prebuild": "npm run clean -- --dist",
     "build": "npm run build-bundle && npm run build-js && npm run build-docs",
     "postbuild": "npm run copy-package-json && shx cp LICENSE README.md dist",
     "smoke-test": "cd test/smoke && npm install && npm test",
     "build-bundle": "webpack --progress --color && shx cp src/phaser-ts-utils.d.ts dist",
     "build-js": "tsc --project tsconfig.build.json",
     "build-docs": "typedoc --out dist/docs --entryPointStrategy expand src/phaser-ts-utils.d.ts && shx cp LICENSE dist/docs",
-    "lint": "ts-node scripts/lint.ts",
-    "lint:fix": "npm run lint -- --fix",
     "copy-package-json": "ts-node scripts/copy-package-json.ts",
     "create-package-tarball": "ts-node scripts/create-package-tarball.ts",
     "publish-package-tarball": "ts-node scripts/publish-package-tarball/cli.ts",
     "compare-package-version": "ts-node scripts/compare-package-version.ts",
-    "clean": "shx rm -f .eslintcache .smarttagcache npm-debug.log package-log.txt package-tarball-name.txt phaser3-ts-utils-*.tgz && shx rm -rf coverage dist"
+    "lint": "ts-node scripts/lint.ts",
+    "lint:fix": "npm run lint -- --fix",
+    "clean": "ts-node scripts/clean.ts"
   },
   "repository": {
     "type": "git",
