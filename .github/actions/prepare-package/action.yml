@@ -29,6 +29,8 @@ runs:
       id: prepare-package
       run: echo "release $INPUT_RELEASE" && npm run create-package-tarball -- "$([ "$INPUT_RELEASE" == 'true' ] && echo --release)" && echo "::set-output name=package-tarball::$(cat package-tarball-name.txt)"
       shell: bash
+      env:
+        INPUT_RELEASE: '${{ inputs.release }}'
     - name: Upload Package Artifacts
       uses: actions/upload-artifact@v2
       with:
