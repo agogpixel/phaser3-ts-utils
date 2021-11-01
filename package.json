@@ -1,6 +1,6 @@
 {
   "name": "@agogpixel/phaser3-ts-utils",
-  "version": "0.1.0-alpha",
+  "version": "0.1.0-alpha.1",
   "description": "Phaser 3 TypeScript utilities.",
   "main": "./phaser-ts-utils.js",
   "types": "./phaser-ts-utils.d.ts",

@@ -27,7 +27,7 @@ runs:
         path: dist
     - name: Prepare Package
       id: prepare-package
-      run: npm run create-package-tarball -- "$([ "$INPUT_RELEASE" == true ] && echo --release)" && echo "::set-output name=package-tarball::$(cat package-tarball-name.txt)"
+      run: npm run create-package-tarball -- "$([ "$INPUT_RELEASE" == 'true' ] && echo --release)" && echo "::set-output name=package-tarball::$(cat package-tarball-name.txt)"
       shell: bash
     - name: Upload Package Artifacts
       uses: actions/upload-artifact@v2
