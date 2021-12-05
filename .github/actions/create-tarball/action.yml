@@ -1,5 +1,5 @@
-name: Prepare Package
-description: Creates & uploads package artifacts.
+name: Create Tarball
+description: Creates & uploads package tarball.
 inputs:
   build-artifacts-name:
     description: Name of previously uploaded build artifacts.
@@ -13,10 +13,6 @@ inputs:
     description: Flag indicating package will be versioned & tagged for non-development release channels.
     required: false
     default: 'false'
-outputs:
-  package-tarball:
-    description: Package tarball.
-    value: ${{ steps.prepare-package.outputs.package-tarball }}
 runs:
   using: composite
   steps:
@@ -25,17 +21,13 @@ runs:
       with:
         name: ${{ inputs.build-artifacts-name }}
         path: dist
-    - name: Prepare Package
-      id: prepare-package
-      run: npm run create-package-tarball -- "$([ "$INPUT_RELEASE" == 'true' ] && echo --release)" && echo "::set-output name=package-tarball::$(cat package-tarball-name.txt)"
+    - name: Create Tarball
+      run: if [ "${{ inputs.release }}" == 'true' ]; then npm run create-tarball -- --release; else npm run create-tarball; fi
       shell: bash
-      env:
-        INPUT_RELEASE: '${{ inputs.release }}'
     - name: Upload Package Artifacts
       uses: actions/upload-artifact@v2
       with:
         name: ${{ inputs.package-artifacts-name }}
         path: |
-          package-log.txt
-          package-tarball-name.txt
-          ${{ steps.prepare-package.outputs.package-tarball }}
+          *.tgz
+          .cavycache

@@ -27,5 +27,5 @@ runs:
         registry-url: '${{ inputs.registry-url }}'
         scope: '${{ inputs.scope }}'
     - name: Publish Package (${{ inputs.registry-name }})
-      run: npm run publish-package-tarball -- "${{ inputs.registry-name }}"
+      run: npm run publish-tarball
       shell: bash
