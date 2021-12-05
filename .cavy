@@ -1,0 +1,67 @@
+{
+  "lint": {
+    "commands": [
+      {
+        "name": "eslint",
+        "targets": ["jest.config.js", "webpack.config.js", "src", "test"],
+        "test": "npx --no-install --quiet eslint",
+        "fix": "npx --no-install --quiet eslint --fix"
+      },
+      {
+        "name": "prettier",
+        "targets": ["."],
+        "test": "npx --no-install --quiet prettier --check",
+        "fix": "npx --no-install --quiet prettier --write"
+      }
+    ]
+  },
+  "clean": {
+    "commands": [
+      {
+        "name": "dist",
+        "dirs": ["dist"],
+        "files": []
+      },
+      {
+        "name": "test",
+        "dirs": ["coverage"],
+        "files": [".eslintcache"]
+      },
+      {
+        "name": "tarball",
+        "dirs": [],
+        "files": [".cavycache", "agogpixel-phaser3-ts-utils-*.tgz"]
+      }
+    ]
+  },
+  "copy": {
+    "commands": [
+      {
+        "name": "dist",
+        "src": ".",
+        "dst": "dist",
+        "redact": ["devDependencies", "scripts", "engines", "lint-staged"]
+      }
+    ]
+  },
+  "pack": {
+    "commands": [
+      {
+        "name": "dist",
+        "src": "dist",
+        "dst": ".",
+        "devPostfix": "dev-build",
+        "postUpdate": []
+      }
+    ]
+  },
+  "publish": {
+    "commands": [
+      {
+        "name": "dist",
+        "packName": "dist",
+        "preReleaseTag": "next"
+      }
+    ]
+  }
+}

@@ -20,9 +20,6 @@ runs:
       uses: actions/download-artifact@v2
       with:
         name: ${{ inputs.package-artifacts-name }}
-    - name: Read Package Artifacts
-      run: echo "PACKAGE_TARBALL=$(cat package-tarball-name.txt)" >> $GITHUB_ENV
-      shell: bash
     - name: Publish Package (NPM)
       uses: ./.github/actions/publish-package/to-registry
       env:
@@ -34,11 +31,3 @@ runs:
         registry-url: https://npm.pkg.github.com
       env:
         NODE_AUTH_TOKEN: ${{ inputs.github-auth-token }}
-    - name: Archive Package Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: ${{ inputs.package-artifacts-name }}
-        path: |
-          package-log.txt
-          package-tarball-name.txt
-          ${{ env.PACKAGE_TARBALL }}

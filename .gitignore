@@ -41,10 +41,8 @@ yarn-error.log
 testem.log
 /typings
 .eslintcache
-.smarttagcache
-package-log.txt
-package-tarball-name.txt
-phaser3-ts-utils*.tgz
+.cavycache
+agogpixel-phaser3-ts-utils-*.tgz
 
 # System Files
 .DS_Store

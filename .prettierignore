@@ -4,5 +4,6 @@
 coverage/*
 dist/*
 node_modules/*
+.cavycache
 package-lock.json
 package.json
