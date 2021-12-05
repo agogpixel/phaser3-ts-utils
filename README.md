@@ -299,15 +299,15 @@ npm run smoke-test
 Create package tarball from `dist`:
 
 ```shell
-npm run create-package-tarball               # Development stream.
-npm run create-package-tarball -- --release  # Release stream.
+npm run create-tarball               # Development stream.
+npm run create-tarball -- --release  # Release stream.
 ```
 
 Publish package tarball to registry (some assembly required):
 
 ```shell
-npm run publish-package-tarball -- NPM
-npm run publish-package-tarball -- GitHub
+npm run publish-tarball -- NPM
+npm run publish-tarball -- GitHub
 ```
 
 ## Package Distribution
