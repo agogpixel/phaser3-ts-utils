@@ -5,6 +5,6 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/test/test-setup.ts'],
   testPathIgnorePatterns: ['<rootDir>/test/smoke/'],
   verbose: true,
-  collectCoverageFrom: ['src/**/*.ts', '!src/**/index.ts', '!src/types.ts'],
+  collectCoverageFrom: ['src/**/*.ts', '!src/phaser-ts-utils.d.ts', '!src/**/index.ts', '!src/types.ts'],
   coverageReporters: ['text', 'html']
 };

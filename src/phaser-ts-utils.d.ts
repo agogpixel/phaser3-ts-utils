@@ -75,6 +75,14 @@ declare namespace PhaserTSUtils {
         const Flip: PhaserTSUtils.Types.GameObjects.Components.FlipMixin;
 
         /**
+         * Provides methods used for setting the FX values of a Game Object.
+         *
+         * @param BaseGameObject Game Object class.
+         * @returns Game Object class with component definition mixed in.
+         */
+        const FX: PhaserTSUtils.Types.GameObjects.Components.FXMixin;
+
+        /**
          * Provides methods used for obtaining the bounds of a Game Object.
          *
          * Target Game Object class must have
@@ -324,6 +332,11 @@ declare namespace PhaserTSUtils {
          * Game Object flip component mixin type.
          */
         type FlipMixin = Mixin<Phaser.GameObjects.Components.Flip, Phaser.GameObjects.GameObject>;
+
+        /**
+         * Game Object FX component mixin type.
+         */
+        type FXMixin = Mixin<Phaser.GameObjects.Components.FX, Phaser.GameObjects.GameObject>;
 
         /**
          * Game Object get bounds component mixin type.
