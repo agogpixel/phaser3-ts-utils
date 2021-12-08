@@ -6,5 +6,5 @@ module.exports = {
   testPathIgnorePatterns: ['<rootDir>/test/smoke/'],
   verbose: true,
   collectCoverageFrom: ['src/**/*.ts', '!src/phaser-ts-utils.d.ts', '!src/**/index.ts', '!src/types.ts'],
-  coverageReporters: ['text', 'html']
+  coverageReporters: ['text', 'text-summary', 'html']
 };

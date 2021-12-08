@@ -12,10 +12,20 @@ runs:
       run: npm run lint
       shell: bash
     - name: Unit Test
-      run: npm test
+      run: COVERAGE=$(npm test | tee /dev/tty | grep -oP "^Lines[[:space:]]*:[[:space:]]*[^%]*") && echo $COVERAGE
       shell: bash
     - name: Archive Coverage Report
       uses: actions/upload-artifact@v2
       with:
         name: coverage
         path: coverage
+#    - name: Create Coverage Badge
+#      uses: schneegans/dynamic-badges-action@v1.0.0
+#      with:
+#        auth: ${{ secrets.GHP_TOKEN }}
+#        gistID: 8783260504aa23bb1c4dd36f0ba3be01
+#        filename: phaser3-ts-utils__${{ env.BRANCH }}.json
+#        label: Coverage
+#        message: ${{ env.COVERAGE }}
+#        color: green
+#        namedLogo: jest

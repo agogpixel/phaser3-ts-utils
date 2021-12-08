@@ -10,6 +10,8 @@ declare namespace PhaserTSUtils {
      * Mixins & mixin factories for Phaser Game Objects.
      */
     namespace GameObjects {
+      const CustomGameObject: PhaserTSUtils.Types.GameObjects.CustomGameObjectFactory;
+
       /**
        * Mixins & mixin factories for Phaser Game Object components.
        */
@@ -249,6 +251,12 @@ declare namespace PhaserTSUtils {
     const Type: typeof Function;
 
     /**
+     * Convert union type to an intersection type.
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
+
+    /**
      * Game Object types.
      */
     namespace GameObjects {
@@ -275,6 +283,18 @@ declare namespace PhaserTSUtils {
         string,
         InstanceProvider<G>
       >;
+
+      /**
+       * Custom Game Object factory.
+       *
+       * @param mixins Game Object component mixins.
+       */
+      type CustomGameObjectFactory = <
+        Component extends keyof typeof PhaserTSUtils.Mixins.GameObjects.Components,
+        Mixins extends typeof PhaserTSUtils.Mixins.GameObjects.Components[Component][]
+      >(
+        ...mixins: Mixins
+      ) => typeof Phaser.GameObjects.GameObject & PhaserTSUtils.Types.UnionToIntersection<ReturnType<Mixins[number]>>;
 
       /**
        * Game Object Component types.
