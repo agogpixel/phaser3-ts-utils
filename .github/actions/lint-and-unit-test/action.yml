@@ -12,7 +12,7 @@ runs:
       run: npm run lint
       shell: bash
     - name: Unit Test
-      run: COVERAGE=$(npm test | tee /dev/tty | grep -oP "^Lines[[:space:]]*:[[:space:]]*[^%]*") && echo $COVERAGE
+      run: COVERAGE=$(npm test | tee /dev/tty | grep -oP "^Lines[[:space:]]*:[[:space:]]*\K[^%]*") && echo $COVERAGE
       shell: bash
     - name: Archive Coverage Report
       uses: actions/upload-artifact@v2
