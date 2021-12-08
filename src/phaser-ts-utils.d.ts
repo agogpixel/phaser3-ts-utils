@@ -10,6 +10,8 @@ declare namespace PhaserTSUtils {
      * Mixins & mixin factories for Phaser Game Objects.
      */
     namespace GameObjects {
+      const CustomGameObject: PhaserTSUtils.Types.GameObjects.CustomGameObjectFactory;
+
       /**
        * Mixins & mixin factories for Phaser Game Object components.
        */
@@ -73,6 +75,14 @@ declare namespace PhaserTSUtils {
          * @returns Game Object class with component definition mixed in.
          */
         const Flip: PhaserTSUtils.Types.GameObjects.Components.FlipMixin;
+
+        /**
+         * Provides methods used for setting the FX values of a Game Object.
+         *
+         * @param BaseGameObject Game Object class.
+         * @returns Game Object class with component definition mixed in.
+         */
+        const FX: PhaserTSUtils.Types.GameObjects.Components.FXMixin;
 
         /**
          * Provides methods used for obtaining the bounds of a Game Object.
@@ -241,6 +251,12 @@ declare namespace PhaserTSUtils {
     const Type: typeof Function;
 
     /**
+     * Convert union type to an intersection type.
+     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
+
+    /**
      * Game Object types.
      */
     namespace GameObjects {
@@ -267,6 +283,18 @@ declare namespace PhaserTSUtils {
         string,
         InstanceProvider<G>
       >;
+
+      /**
+       * Custom Game Object factory.
+       *
+       * @param mixins Game Object component mixins.
+       */
+      type CustomGameObjectFactory = <
+        Component extends keyof typeof PhaserTSUtils.Mixins.GameObjects.Components,
+        Mixins extends typeof PhaserTSUtils.Mixins.GameObjects.Components[Component][]
+      >(
+        ...mixins: Mixins
+      ) => typeof Phaser.GameObjects.GameObject & PhaserTSUtils.Types.UnionToIntersection<ReturnType<Mixins[number]>>;
 
       /**
        * Game Object Component types.
@@ -324,6 +352,11 @@ declare namespace PhaserTSUtils {
          * Game Object flip component mixin type.
          */
         type FlipMixin = Mixin<Phaser.GameObjects.Components.Flip, Phaser.GameObjects.GameObject>;
+
+        /**
+         * Game Object FX component mixin type.
+         */
+        type FXMixin = Mixin<Phaser.GameObjects.Components.FX, Phaser.GameObjects.GameObject>;
 
         /**
          * Game Object get bounds component mixin type.

@@ -17,6 +17,10 @@ jobs:
         uses: ./.github/actions/setup-dependencies
       - name: Lint & Unit Test
         uses: ./.github/actions/lint-and-unit-test
+        with:
+          auth: ${{ secrets.GHP_TOKEN }}
+          gistID: ${{ secrets.COVERAGE_BADGE_GIST_ID }}
+          repo-name: phaser3-ts-utils
   Build-And-Smoke-Test:
     name: Build & Smoke Test
     runs-on: ubuntu-latest
