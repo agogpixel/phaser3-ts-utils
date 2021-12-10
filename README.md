@@ -1,7 +1,7 @@
 # agogpixel/phaser3-ts-utils
 
 [![Build & Test](https://github.com/agogpixel/phaser3-ts-utils/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/agogpixel/phaser3-ts-utils/actions/workflows/build-and-test.yml)
-[![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/kidthales/8783260504aa23bb1c4dd36f0ba3be01/raw/phaser3-ts-utils__heads_main.json)]()
+[![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/kidthales/8783260504aa23bb1c4dd36f0ba3be01/raw/phaser3-ts-utils__heads_main.json)](https://github.com/agogpixel/phaser3-ts-utils/actions/workflows/build-and-test.yml)
 [![Version](https://img.shields.io/npm/v/@agogpixel/phaser3-ts-utils.svg)](https://npmjs.org/package/@agogpixel/phaser3-ts-utils)
 [![Downloads/week](https://img.shields.io/npm/dw/@agogpixel/phaser3-ts-utils.svg)](https://npmjs.org/package/@agogpixel/phaser3-ts-utils)
 [![License](https://img.shields.io/npm/l/@agogpixel/phaser3-ts-utils.svg)](https://github.com/agogpixel/phaser3-ts-utils/blob/master/LICENSE)
@@ -60,6 +60,30 @@ const { Alpha, BlendMode, Texture, Transform, Visible } = PhaserTSUtils.Mixins.G
 class MyBaseGameObject extends Phaser.GameObjects.GameObject {}
 
 class MyGameObject extends Alpha(BlendMode(Texture(Transform(Visible(MyBaseGameObject))))) {
+    // Custom Game Object implementation
+    // with mixed in component properties
+    // available in TypeScript...
+    doFoo() {
+        this.setAlpha(0.75);
+        // ...
+    }
+}
+```
+
+##### CustomGameObject
+
+To help streamline the [components](#components) example, a [CustomGameObject](./src/mixins/gameobjects/custom-gameobject.ts) factory function is now available:
+
+```typescript
+const { Alpha, BlendMode, Texture, Transform, Visible } = PhaserTSUtils.Mixins.GameObjects.Components;
+
+class MyGameObject extends PhaserTSUtils.Mixins.GameObjects.CustomGameObject(
+    Alpha,
+    BlendMode,
+    Texture,
+    Transform,
+    Visible
+) {
     // Custom Game Object implementation
     // with mixed in component properties
     // available in TypeScript...
