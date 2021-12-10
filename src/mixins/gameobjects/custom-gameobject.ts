@@ -1,9 +1,10 @@
 import * as Mixins from './components';
 
 /**
+ * Custom Game Object factory.
  *
- * @param mixins
- * @returns
+ * @param mixins Game Object component mixins.
+ * @returns Custom Game Object class with component definitions mixed in.
  */
 export const CustomGameObject: PhaserTSUtils.Types.GameObjects.CustomGameObjectFactory = (...mixins) => {
   class BaseGameObject extends Phaser.GameObjects.GameObject {}

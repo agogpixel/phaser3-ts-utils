@@ -10,6 +10,12 @@ declare namespace PhaserTSUtils {
      * Mixins & mixin factories for Phaser Game Objects.
      */
     namespace GameObjects {
+      /**
+       * Custom Game Object factory.
+       *
+       * @param mixins Game Object component mixins.
+       * @returns Custom Game Object class with component definitions mixed in.
+       */
       const CustomGameObject: PhaserTSUtils.Types.GameObjects.CustomGameObjectFactory;
 
       /**

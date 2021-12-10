@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 -   [@agogpixel/cavy](https://github.com/agogpixel/cavy) dev dependency.
 -   Coverage badge via GitHub Actions.
+-   `UnionToIntersection` utility type.
 -   [CustomGameObject](./src/mixins/gameobjects/custom-gameobject.ts) class factory.
 
 ### Removed
