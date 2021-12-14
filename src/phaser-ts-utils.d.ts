@@ -371,7 +371,7 @@ declare namespace PhaserTSUtils {
           Phaser.GameObjects.Components.GetBounds,
           Phaser.GameObjects.GameObject &
             Phaser.GameObjects.Components.Transform &
-            (Phaser.GameObjects.Components.ComputedSize | Phaser.GameObjects.Components.Size) &
+            Phaser.GameObjects.Components.ComputedSize &
             Phaser.GameObjects.Components.Origin
         >;
 
@@ -385,8 +385,7 @@ declare namespace PhaserTSUtils {
          */
         type OriginMixin = Mixin<
           Phaser.GameObjects.Components.Origin,
-          Phaser.GameObjects.GameObject &
-            (Phaser.GameObjects.Components.ComputedSize | Phaser.GameObjects.Components.Size)
+          Phaser.GameObjects.GameObject & Phaser.GameObjects.Components.ComputedSize
         >;
 
         /**
@@ -413,12 +412,16 @@ declare namespace PhaserTSUtils {
         type SizeMixin = Mixin<
           Phaser.GameObjects.Components.Size,
           Phaser.GameObjects.GameObject &
-            Phaser.GameObjects.Components.Transform &
-            (
-              | Phaser.GameObjects.Components.Crop
-              | Phaser.GameObjects.Components.Texture
-              | Phaser.GameObjects.Components.TextureCrop
-            )
+            Phaser.GameObjects.Components.Transform & {
+              /**
+               * The Texture this Game Object is using to render with.
+               */
+              texture: Phaser.Textures.Texture | Phaser.Textures.CanvasTexture;
+              /**
+               * The Texture Frame this Game Object is using to render with.
+               */
+              frame: Phaser.Textures.Frame;
+            }
         >;
 
         /**

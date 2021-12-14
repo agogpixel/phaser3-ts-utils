@@ -18,10 +18,14 @@ import { createMixin } from './create-mixin';
 export const Size: PhaserTSUtils.Types.GameObjects.Components.SizeMixin = createMixin<
   Phaser.GameObjects.Components.Size,
   Phaser.GameObjects.GameObject &
-    Phaser.GameObjects.Components.Transform &
-    (
-      | Phaser.GameObjects.Components.Crop
-      | Phaser.GameObjects.Components.Texture
-      | Phaser.GameObjects.Components.TextureCrop
-    )
+    Phaser.GameObjects.Components.Transform & {
+      /**
+       * The Texture this Game Object is using to render with.
+       */
+      texture: Phaser.Textures.Texture | Phaser.Textures.CanvasTexture;
+      /**
+       * The Texture Frame this Game Object is using to render with.
+       */
+      frame: Phaser.Textures.Frame;
+    }
 >(SizeComponent);

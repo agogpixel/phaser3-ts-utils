@@ -19,6 +19,6 @@ export const GetBounds: PhaserTSUtils.Types.GameObjects.Components.GetBoundsMixi
   Phaser.GameObjects.Components.GetBounds,
   Phaser.GameObjects.GameObject &
     Phaser.GameObjects.Components.Transform &
-    (Phaser.GameObjects.Components.ComputedSize | Phaser.GameObjects.Components.Size) &
+    Phaser.GameObjects.Components.ComputedSize &
     Phaser.GameObjects.Components.Origin
 >(GetBoundsComponent);

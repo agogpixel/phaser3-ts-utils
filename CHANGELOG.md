@@ -13,6 +13,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 -   `UnionToIntersection` utility type.
 -   [CustomGameObject](./src/mixins/gameobjects/custom-gameobject.ts) class factory.
 
+### Changed
+
+-   Do not use type unions in the `GameObjectConstraint` template parameter found in [GetBounds](./src/mixins/gameobjects/components/get-bounds.ts), [Origin](./src/mixins/gameobjects/components/origin.ts), & [Size](./src/mixins/gameobjects/components/size.ts) component mixins.
+
 ### Removed
 
 -   Development scripts and related dependencies.

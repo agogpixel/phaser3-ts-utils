@@ -16,5 +16,5 @@ import { createMixin } from './create-mixin';
  */
 export const Origin: PhaserTSUtils.Types.GameObjects.Components.OriginMixin = createMixin<
   Phaser.GameObjects.Components.Origin,
-  Phaser.GameObjects.GameObject & (Phaser.GameObjects.Components.ComputedSize | Phaser.GameObjects.Components.Size)
+  Phaser.GameObjects.GameObject & Phaser.GameObjects.Components.ComputedSize
 >(OriginComponent);
