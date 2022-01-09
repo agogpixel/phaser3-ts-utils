@@ -73,12 +73,17 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-      - name: Fetch Build Artifacts
+      - name: Setup Dependencies
+        uses: ./.github/actions/setup-dependencies
+      - name: Build API Docs
+        run: npm run build-docs
+        shell: bash
+      - name: Fetch Coverage Artifacts
         uses: actions/download-artifact@v2
         with:
-          name: dist
-          path: dist
-      - name: Deploy Docs To GitHub Pages
+          name: coverage
+          path: dist/docs/coverage
+      - name: Deploy To GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages

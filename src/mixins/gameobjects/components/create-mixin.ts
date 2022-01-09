@@ -14,10 +14,10 @@ export function createMixin<
   GameObjectComponent,
   GameObjectConstraint extends Phaser.GameObjects.GameObject = Phaser.GameObjects.GameObject
 >(
-  component: GameObjectComponent
+  ...component: GameObjectComponent[]
 ): PhaserTSUtils.Types.GameObjects.Components.Mixin<GameObjectComponent, GameObjectConstraint> {
   return (BaseGameObject) => {
-    mixin(BaseGameObject, [component]);
+    mixin(BaseGameObject, component);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return BaseGameObject as any;
   };

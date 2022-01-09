@@ -37,7 +37,7 @@ describe('Custom Game Object', () => {
   });
 
   it('creates a simple custom game object type [Alpha, Flip]', () => {
-    class AlphaFlipGameObject extends CustomGameObject(Alpha, Flip) {}
+    class AlphaFlipGameObject extends CustomGameObject(true, Alpha, Flip) {}
 
     const gameObject = new AlphaFlipGameObject(scene, 'test');
 
@@ -48,29 +48,34 @@ describe('Custom Game Object', () => {
   });
 
   it('throws when Transform is not available for ComputedSize', () =>
-    expect(() => CustomGameObject(ComputedSize)).toThrow('CustomGameObject: ComputedSize requires Transform'));
+    expect(() => CustomGameObject(true, ComputedSize)).toThrow('CustomGameObject: ComputedSize requires Transform'));
 
   it('throws when ComputedSize or Size is not available for GetBounds', () =>
-    expect(() => CustomGameObject(GetBounds)).toThrow(
+    expect(() => CustomGameObject(true, GetBounds)).toThrow(
       'CustomGameObject: GetBounds requires one of ComputedSize or Size'
     ));
 
   it('throws when Origin is not available for GetBounds', () =>
-    expect(() => CustomGameObject(GetBounds, ComputedSize, Transform)).toThrow(
+    expect(() => CustomGameObject(true, GetBounds, ComputedSize, Transform)).toThrow(
       'CustomGameObject: GetBounds requires Origin and Transform'
     ));
 
   it('throws when ComputedSize or Size is not available for Origin', () =>
-    expect(() => CustomGameObject(Origin)).toThrow('CustomGameObject: Origin requires one of ComputedSize or Size'));
+    expect(() => CustomGameObject(true, Origin)).toThrow(
+      'CustomGameObject: Origin requires one of ComputedSize or Size'
+    ));
 
   it('throws when Transform is not available for PathFollower', () =>
-    expect(() => CustomGameObject(PathFollower)).toThrow('CustomGameObject: PathFollower requires Transform'));
+    expect(() => CustomGameObject(true, PathFollower)).toThrow('CustomGameObject: PathFollower requires Transform'));
 
   it('throws when Transform is not available for Size', () =>
-    expect(() => CustomGameObject(Size)).toThrow('CustomGameObject: Size requires Transform'));
+    expect(() => CustomGameObject(true, Size)).toThrow('CustomGameObject: Size requires Transform'));
 
   it('throws when Crop, Texture, & TextureCrop are not available for Size', () =>
-    expect(() => CustomGameObject(Size, Transform)).toThrow(
+    expect(() => CustomGameObject(true, Size, Transform)).toThrow(
       'CustomGameObject: Size requires one of Crop, Texture, or TextureCrop'
     ));
+
+  it('skips checking dependent component mixins', () =>
+    expect(typeof CustomGameObject(false, Size, Transform)).toEqual('function'));
 });

@@ -293,12 +293,14 @@ declare namespace PhaserTSUtils {
       /**
        * Custom Game Object factory.
        *
+       * @param check Check if component dependencies are included in mixins.
        * @param mixins Game Object component mixins.
        */
       type CustomGameObjectFactory = <
         Component extends keyof typeof PhaserTSUtils.Mixins.GameObjects.Components,
         Mixins extends typeof PhaserTSUtils.Mixins.GameObjects.Components[Component][]
       >(
+        check: boolean,
         ...mixins: Mixins
       ) => typeof Phaser.GameObjects.GameObject & PhaserTSUtils.Types.UnionToIntersection<ReturnType<Mixins[number]>>;
 
