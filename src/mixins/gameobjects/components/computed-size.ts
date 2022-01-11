@@ -8,7 +8,6 @@ import { createMixin } from './create-mixin';
  * Target Game Object class must have
  * [Phaser.GameObjects.Components.Transform](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Transform.html)
  * defined.
- *
  * @param BaseGameObject Game Object class.
  * @returns Game Object class with component definition mixed in.
  */

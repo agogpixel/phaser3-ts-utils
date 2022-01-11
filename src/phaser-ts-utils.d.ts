@@ -12,7 +12,6 @@ declare namespace PhaserTSUtils {
     namespace GameObjects {
       /**
        * Custom Game Object factory.
-       *
        * @param mixins Game Object component mixins.
        * @returns Custom Game Object class with component definitions mixed in.
        */
@@ -24,7 +23,6 @@ declare namespace PhaserTSUtils {
       namespace Components {
         /**
          * Provides methods used for setting the alpha properties of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -32,7 +30,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for setting the alpha properties of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -40,7 +37,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for setting the blend mode of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -52,7 +48,6 @@ declare namespace PhaserTSUtils {
          * Target Game Object class must have
          * [Phaser.GameObjects.Components.Transform](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Transform.html)
          * defined.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -60,7 +55,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for getting and setting the texture of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -68,7 +62,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for setting the depth of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -76,7 +69,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for visually flipping a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -85,10 +77,11 @@ declare namespace PhaserTSUtils {
         /**
          * Provides methods used for setting the FX values of a Game Object.
          *
+         * Requires Phaser v3.60.0 or later.
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
-        const FX: PhaserTSUtils.Types.GameObjects.Components.FXMixin;
+        //const FX: PhaserTSUtils.Types.GameObjects.Components.FXMixin;
 
         /**
          * Provides methods used for obtaining the bounds of a Game Object.
@@ -99,7 +92,6 @@ declare namespace PhaserTSUtils {
          * or [Phaser.GameObjects.Components.Size](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Size.html),
          * & [Phaser.GameObjects.Components.Origin](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Origin.html)
          * defined.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -107,7 +99,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for getting and setting the mask of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -121,7 +112,6 @@ declare namespace PhaserTSUtils {
          * [Phaser.GameObjects.Components.ComputedSize](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.ComputedSize.html)
          * or [Phaser.GameObjects.Components.Size](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Size.html)
          * defined.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -133,7 +123,6 @@ declare namespace PhaserTSUtils {
          * Target Game Object class must have
          * [Phaser.GameObjects.Components.Transform](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Transform.html)
          * defined.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -141,7 +130,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for setting the WebGL rendering pipeline of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -149,7 +137,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for getting and setting the Scroll Factor of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -164,7 +151,6 @@ declare namespace PhaserTSUtils {
          * [Phaser.GameObjects.Components.Texture](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Texture.html),
          * or [Phaser.GameObjects.Components.TextureCrop](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.TextureCrop.html)
          * defined.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -172,7 +158,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for getting and setting the texture of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -180,7 +165,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for getting and setting the texture of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -188,7 +172,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for setting the tint of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -196,7 +179,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for getting and setting the position, scale and rotation of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -204,7 +186,6 @@ declare namespace PhaserTSUtils {
 
         /**
          * Provides methods used for setting the visibility of a Game Object.
-         *
          * @param BaseGameObject Game Object class.
          * @returns Game Object class with component definition mixed in.
          */
@@ -220,7 +201,6 @@ declare namespace PhaserTSUtils {
        * Creates a class mixin that exposes an
        * [injected plugin](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/pluginsystem/)'s API on a
        * [Phaser.Scene](https://photonstorm.github.io/phaser3-docs/Phaser.Scene.html) based class.
-       *
        * @template Plugin Plugin for which we are exposing an API.
        * @template PluginPublicProperty String literal or union of string literals mapping plugin properties to the plugin's
        * scene mapping.
@@ -239,7 +219,6 @@ declare namespace PhaserTSUtils {
   namespace Types {
     /**
      * Infer a constructor type.
-     *
      * @template T Type to be constructed.
      * @template P (Optional) Constructor parameters.
      */
@@ -268,7 +247,6 @@ declare namespace PhaserTSUtils {
     namespace GameObjects {
       /**
        * Game Object instance provider type.
-       *
        * @param args Game Object creator or factory params (unspecified type).
        * @template G (Optional) Extended
        * [Phaser.GameObjects.GameObject](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.GameObject.html) type.
@@ -281,7 +259,6 @@ declare namespace PhaserTSUtils {
 
       /**
        * Maps Game Object key to instance provider type.
-       *
        * @template G (Optional) Extended
        * [Phaser.GameObjects.GameObject](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.GameObject.html) type.
        */
@@ -292,7 +269,6 @@ declare namespace PhaserTSUtils {
 
       /**
        * Custom Game Object factory.
-       *
        * @param check Check if component dependencies are included in mixins.
        * @param mixins Game Object component mixins.
        */
@@ -310,7 +286,6 @@ declare namespace PhaserTSUtils {
       namespace Components {
         /**
          * [Game Object Component](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.html) mixin type.
-         *
          * @param BaseGameObject Game Object constructor.
          * @template GameObjectComponent Game Object component type.
          * @template GameObjectConstraint Game Object type constraint. Ensures mixin only accepts Game Object classes that
@@ -363,8 +338,10 @@ declare namespace PhaserTSUtils {
 
         /**
          * Game Object FX component mixin type.
+         *
+         * Requires Phaser v3.60.0 or later.
          */
-        type FXMixin = Mixin<Phaser.GameObjects.Components.FX, Phaser.GameObjects.GameObject>;
+        //type FXMixin = Mixin<Phaser.GameObjects.Components.FX, Phaser.GameObjects.GameObject>;
 
         /**
          * Game Object get bounds component mixin type.
@@ -463,7 +440,6 @@ declare namespace PhaserTSUtils {
       namespace FileTypes {
         /**
          * Maps loader file type key to callback function type.
-         *
          * @see https://photonstorm.github.io/phaser3-docs/Phaser.Plugins.PluginManager.html#registerFileType__anchor
          */
         type CallbackRecord = Record<
@@ -480,7 +456,6 @@ declare namespace PhaserTSUtils {
     namespace Scenes {
       /**
        * Plugin API mixin factory type.
-       *
        * @template Plugin Plugin for which we are exposing an API.
        * @template PluginPublicProperty String literal or union of string literals mapping plugin properties to the plugin's
        * scene mapping.
@@ -498,7 +473,6 @@ declare namespace PhaserTSUtils {
 
       /**
        * Plugin API mixin type.
-       *
        * @param mapping Plugin's scene mapping.
        * @param BaseScene Phaser scene constructor.
        * @template Plugin Plugin type for which we are exposing an API.

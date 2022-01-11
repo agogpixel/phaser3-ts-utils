@@ -8,7 +8,7 @@
 
 <hr>
 
-[Phaser 3](https://github.com/photonstorm/phaser) [TypeScript](https://www.typescriptlang.org/) utilities.
+[Phaser 3](https://github.com/photonstorm/phaser) [TypeScript](https://www.typescriptlang.org/) utilities. Requires Phaser `v3.22+` as a peer dependency.
 
 ## Getting Started
 
@@ -32,6 +32,12 @@
 
     ```typescript
     import '@agogpixel/phaser3-ts-utils';
+    ```
+
+4. If using Phaser `v3.60+` and need the `FX` component mixin, import & use directly:
+
+    ```typescript
+    import { FX } from '@agogpixel/phaser3-ts-utils/src/mixins/gameobjects/components/fx';
     ```
 
 ## Usage
