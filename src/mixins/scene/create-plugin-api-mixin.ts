@@ -2,7 +2,6 @@
  * Creates a class mixin that exposes an
  * [injected plugin](https://rexrainbow.github.io/phaser3-rex-notes/docs/site/pluginsystem/)'s API on a
  * [Phaser.Scene](https://photonstorm.github.io/phaser3-docs/Phaser.Scene.html) based class.
- *
  * @template Plugin Plugin for which we are exposing an API.
  * @template PluginPublicProperty String literal or union of string literals mapping plugin properties to the plugin's
  * scene mapping.

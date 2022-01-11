@@ -11,7 +11,6 @@ import { createMixin } from './create-mixin';
  * [Phaser.GameObjects.Components.Texture](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Texture.html),
  * or [Phaser.GameObjects.Components.TextureCrop](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.TextureCrop.html)
  * defined.
- *
  * @param BaseGameObject Game Object class.
  * @returns Game Object class with component definition mixed in.
  */

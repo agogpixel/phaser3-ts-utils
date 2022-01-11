@@ -32,7 +32,7 @@
   },
   "homepage": "https://agogpixel.github.io/phaser3-ts-utils",
   "peerDependencies": {
-    "phaser": ">=3.60.0-beta.3",
+    "phaser": ">=3.22.0",
     "typescript": ">=2.1.0"
   },
   "devDependencies": {

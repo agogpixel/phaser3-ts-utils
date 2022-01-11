@@ -5,7 +5,7 @@ export * from './computed-size';
 export * from './crop';
 export * from './depth';
 export * from './flip';
-export * from './fx';
+//export * from './fx';
 export * from './get-bounds';
 export * from './mask';
 export * from './origin';

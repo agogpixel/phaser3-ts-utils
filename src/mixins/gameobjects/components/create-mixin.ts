@@ -2,7 +2,6 @@ import { mixin } from 'phaser/src/utils/Class';
 
 /**
  * Create Game Object class component mixin.
- *
  * @param component Game Object component definition.
  * @template GameObjectComponent Game Object component type.
  * @template GameObjectConstraint Game Object type constraint. Ensures resulting mixin only accepts Game Object classes

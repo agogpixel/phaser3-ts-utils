@@ -8,14 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
--   [@agogpixel/cavy](https://github.com/agogpixel/cavy) dev dependency.
--   Coverage badge via GitHub Actions.
 -   `UnionToIntersection` utility type.
 -   [CustomGameObject](./src/mixins/gameobjects/custom-gameobject.ts) class factory with component mixin dependency checking (true/false).
 
 ### Changed
 
 -   Do not use type unions in the `GameObjectConstraint` template parameter found in [GetBounds](./src/mixins/gameobjects/components/get-bounds.ts), [Origin](./src/mixins/gameobjects/components/origin.ts), & [Size](./src/mixins/gameobjects/components/size.ts) component mixins.
+-   Set Phaser peer dependency to v3.22+. FX component is available with v3.60+, corresponding mixin must be imported directly
 
 ### Removed
 

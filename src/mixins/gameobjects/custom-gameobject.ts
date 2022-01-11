@@ -2,7 +2,6 @@ import * as Mixins from './components';
 
 /**
  * Custom Game Object factory.
- *
  * @param check Check if component dependencies are included in mixins.
  * @param mixins Game Object component mixins.
  * @returns Custom Game Object class with component definitions mixed in.

@@ -10,7 +10,6 @@ import { createMixin } from './create-mixin';
  * [Phaser.GameObjects.Components.ComputedSize](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.ComputedSize.html)
  * or [Phaser.GameObjects.Components.Size](https://photonstorm.github.io/phaser3-docs/Phaser.GameObjects.Components.Size.html)
  * defined.
- *
  * @param BaseGameObject Game Object class.
  * @returns Game Object class with component definition mixed in.
  */
